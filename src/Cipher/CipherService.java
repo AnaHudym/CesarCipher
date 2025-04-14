@@ -1,9 +1,7 @@
 package Cipher;
 
 public class CipherService {
-    private final char[] alphabetLower = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-    private final char[] alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-    private final char[] extraChars = {'.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '};
+
 
     public String encrypt(String text, int key){
         StringBuilder result = new StringBuilder();
@@ -12,11 +10,11 @@ public class CipherService {
             char current = text.charAt(i);
 
             if(Character.isLowerCase(current)){
-                result.append(keyChar(current, alphabetLower, key));
+                result.append(keyChar(current, Constants.alphabetLower, key));
             } else if (Character.isUpperCase(current)) {
-                result.append(keyChar(current, alphabetUpper, key));
-            } else if (isInArray(current, extraChars)) {
-                result.append(keyChar(current, extraChars, key));
+                result.append(keyChar(current, Constants.alphabetUpper, key));
+            } else if (isInArray(current, Constants.extraChars)) {
+                result.append(keyChar(current, Constants.extraChars, key));
             } else {
                 result.append(current);
             }

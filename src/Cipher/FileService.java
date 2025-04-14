@@ -14,12 +14,18 @@ public class FileService {
         return "";
     }
 
-    public void writeToFile (String filePath, String text){
+    public void writeToFile (String filePath, String text, String tag){
         try{
-            Files.writeString(Path.of(filePath), text);
+            String newFilePath = generateOutputPath(filePath, tag);
+            Files.writeString(Path.of(newFilePath), text);
         } catch (IOException e) {
             System.out.println("Помилка при записі у файл:" + e.getMessage());
         }
+    }
+
+    private String generateOutputPath (String originalPath, String tag){
+        int dotIndex = originalPath.lastIndexOf(".");
+        return originalPath.substring(0, dotIndex) + tag + originalPath.substring(dotIndex);
     }
 
 }

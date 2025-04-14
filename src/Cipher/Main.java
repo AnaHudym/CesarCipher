@@ -7,14 +7,21 @@ public class Main {
         CipherService cipherService = new CipherService();
         FileService fileService = new FileService();
 
-        String inputPath = "C:/Users/Dima0/IdeaProjects/CesarCipher/test.txt";
-        String outputPath = "C:/Users/Dima0/IdeaProjects/CesarCipher/test[ENCRYPTED].txt";
-        int key = 2;
+        String command = args[0];
+        String filePath = args[1];
+        int key = Integer.parseInt(args[2]);
 
-        String originalText = fileService.readFromFile(inputPath);
-        String encryptedText = cipherService.encrypt(originalText, key);
+        String originalText = fileService.readFromFile(filePath);
+        String resultText;
 
-        fileService.writeToFile(outputPath, encryptedText);
+        if (command.equalsIgnoreCase("ENCRYPT")){
+            resultText = cipherService.encrypt(originalText, key);
+            fileService.writeToFile(filePath, resultText, "[ENCRYPTED]");
+            System.out.println("Файл зашифровано!");
+        }
+        else{
+            System.out.println("Невідома команда. Використовуйте ENCRYPT");
+        }
 
     }
 }
