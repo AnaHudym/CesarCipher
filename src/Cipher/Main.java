@@ -18,9 +18,12 @@ public class Main {
             resultText = cipherService.encrypt(originalText, key);
             fileService.writeToFile(filePath, resultText, "[ENCRYPTED]");
             System.out.println("Файл зашифровано!");
-        }
-        else{
-            System.out.println("Невідома команда. Використовуйте ENCRYPT");
+        } else if (command.equalsIgnoreCase("DECRYPT")) {
+            resultText = cipherService.decrypt(originalText, key);
+            fileService.writeToFile(filePath, resultText, "[DECRYPTED]");
+            System.out.println("Файл розшифровано");
+        } else{
+            System.out.println("Невідома команда. Використовуйте ENCRYPT/DECRYPT");
         }
 
     }

@@ -22,10 +22,18 @@ public class CipherService {
         return result.toString();
     }
 
+    public String decrypt (String text, int key){
+        return encrypt(text, -key);
+    }
+
     private char keyChar (char ch, char[] alphabet, int key){
         for (int i = 0; i < alphabet.length; i++) {
             if (ch == alphabet[i]){
-                return alphabet[(i + key)%alphabet.length];
+                int newIndex = (i + key) % alphabet.length;
+                if (newIndex < 0){
+                    newIndex += alphabet.length;
+                }
+                return alphabet[newIndex];
             }
         }
         return ch;
